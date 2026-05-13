@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="Communitter - A premium, modern chat application interface.">
+    <title>Communitter | Connect Seamlessly</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDKs -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+</head>
+<body>
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo">C</div>
+                <h1>Welcome to Communitter</h1>
+                <p>Connect with your world seamlessly</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="input-group" id="nameGroup" style="display: none;">
+                    <label>Full Name</label>
+                    <input type="text" id="loginName" placeholder="John Doe">
+                </div>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="name@example.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="login-btn" id="loginSubmitBtn">Sign In</button>
+                <p class="auth-toggle">Don't have an account? <span id="toggleSignup">Sign Up</span></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- New Chat Modal -->
+    <div id="newChatModal" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <h2>New Conversation</h2>
+            <p>Enter the email address of the person you want to chat with.</p>
+            <div class="input-group">
+                <input type="email" id="newChatEmail" placeholder="user@example.com">
+            </div>
+            <div class="modal-actions">
+                <button class="cancel-btn" id="closeModal">Cancel</button>
+                <button class="confirm-btn" id="startChatBtn">Start Chat</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-container" id="appContainer" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop" alt="Profile" class="profile-pic">
+                    <span id="currentUserDisplayName" style="font-weight: 600; font-size: 0.95rem;"></span>
+                </div>
+                <div class="header-actions">
+                    <span class="icon-btn"><i data-lucide="circle-dashed"></i></span>
+                    <span class="icon-btn" id="newChatBtn" title="New Chat"><i data-lucide="message-square-plus"></i></span>
+                    <span class="icon-btn" id="logoutBtn" title="Logout"><i data-lucide="log-out"></i></span>
+                    <span class="icon-btn"><i data-lucide="more-vertical"></i></span>
+                </div>
+            </div>
+
+            <div class="search-container">
+                <input type="text" placeholder="Search or start new chat" class="search-bar">
+            </div>
+
+            <div class="chat-list" id="chatList">
+                <!-- Chat items will be injected here -->
+            </div>
+        </aside>
+
+        <!-- Main Chat Area -->
+        <main class="main-chat">
+            <header class="chat-header" id="chatHeader" style="display: none;">
+                <div class="chat-user-info">
+                    <span class="icon-btn back-btn" id="backBtn"><i data-lucide="arrow-left"></i></span>
+                    <img src="" alt="User" class="profile-pic" id="activeChatPic">
+                    <div class="chat-user-details">
+                        <h3 id="activeChatName"></h3>
+                        <span id="activeChatStatus"></span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <i data-lucide="search"></i>
+                    <i data-lucide="phone"></i>
+                    <i data-lucide="video"></i>
+                    <i data-lucide="more-vertical"></i>
+                </div>
+            </header>
+
+            <div class="messages-container" id="messageDisplay">
+                <!-- Messages will be injected here -->
+            </div>
+
+            <footer class="chat-input-area" id="chatInputArea" style="display: none;">
+                <div class="input-actions">
+                    <i data-lucide="plus"></i>
+                    <i data-lucide="smile"></i>
+                </div>
+                <input type="text" placeholder="Type a message..." class="message-input" id="messageInput">
+                <button class="send-btn" id="sendBtn">
+                    <i data-lucide="send"></i>
+                </button>
+            </footer>
+        </main>
+    </div>
+
+    <script type="module" src="script.js"></script>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
